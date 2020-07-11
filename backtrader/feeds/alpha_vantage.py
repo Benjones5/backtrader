@@ -34,6 +34,8 @@ class AlphaVantageFeed(TimeSeries):
            .sort_index()
            .rename(columns={column:column[3:] for column in data.columns})
            .loc[start_date: end_date]
+           .drop('close')
+           .rename(columns={'adjusted close': 'close'})
         )
 
         return backtrader.feeds.PandasData(dataname=df_data)
