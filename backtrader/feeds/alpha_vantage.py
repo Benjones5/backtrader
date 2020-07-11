@@ -34,7 +34,7 @@ class AlphaVantageFeed(TimeSeries):
            .sort_index()
            .rename(columns={column:column[3:] for column in data.columns})
            .loc[start_date: end_date]
-           .drop('close')
+           .drop('close', axis=1)
            .rename(columns={'adjusted close': 'close'})
         )
 
